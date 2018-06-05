@@ -48,6 +48,8 @@ function addTask(text) {
 function deleteTask(id) {
     // найти по id элемент массива и удалить из массива
     // найти элемент на страницы с таким же id и удалить его из разметки
+    if(!Number(id)) return console.log('id must be a number');
+    id = String(id);
     let idExist;
     tasks.forEach(task => {
         if (task.id === id){
@@ -67,8 +69,10 @@ function deleteTask(id) {
       }  
     }
 }
+deleteTask('abc');
 deleteTask('1');
 deleteTask('5');
+deleteTask(2);
 
 // Alert
 function message(text) {      
@@ -82,11 +86,11 @@ function message(text) {
     if (message){
         message.remove();
     }
-    let container = document.getElementById('container');
-    let divMessage = document.createElement('div');
-    divMessage.className = 'alert alert-info'; 
-    divMessage.innerHTML = text;
-    container.insertBefore(divMessage, container.firstChild);
+    const container = document.getElementById('container');
+    message = document.createElement('div');
+    message.className = 'alert alert-info'; 
+    message.innerHTML = text;
+    container.insertBefore(message, container.firstChild);
 }
 message('message_1');
 message('message_2');
